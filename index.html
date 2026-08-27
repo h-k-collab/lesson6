@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<!-- ↑ 「これはHTMLファイルです」とブラウザに伝える宣言 -->
+
+<html lang="ja">
+<!-- ↑ HTMLの始まり。lang="ja" は日本語のページであることを示す -->
+
+<head>
+  <!-- head の中は「設定情報」。ブラウザには表示されない -->
+  <meta charset="UTF-8">
+  <!-- ↑ 文字コードの指定。日本語を正しく表示するために必要 -->
+
+  <title>自己紹介</title>
+  <!-- ↑ ブラウザのタブに表示されるタイトル -->
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <!-- ↑ Google Fontsから「Noto Sans JP」を読み込む -->
+
+  <style>
+    /* CSSはここに書く。「どの要素を」「どう見せるか」を指定する */
+
+    body {
+      /* body = ページ全体に適用するスタイル */
+      margin: 0;
+      min-height: 100vh;
+      display: flex;             /* カードを画面中央に配置するため */
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #0d3b66, #7ec8e3); /* 濃い青→水色のグラデーション */
+      font-family: "Noto Sans JP", sans-serif; /* フォントの種類 */
+    }
+
+    .card {
+      /* 自己紹介カード本体のスタイル */
+      background-color: #fff;      /* 白いカード */
+      border-radius: 24px;         /* 角を丸くする */
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.25); /* ふわっと浮く影 */
+      padding: 40px 48px;
+      max-width: 420px;
+      width: 90%;
+      animation: fadeInUp 0.8s; /* ページを開いたとき下から上にふわっと表示 */
+    }
+
+    @keyframes fadeInUp {
+      /* 0% = アニメーション開始時、100% = 終了時 の状態を指定する */
+      0% {
+        opacity: 0;
+        transform: translateY(30px); /* 少し下の位置からスタート */
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);    /* 本来の位置で終わる */
+      }
+    }
+
+    h1 {
+      /* h1 = 大見出しに適用するスタイル */
+      color: #0d3b66;     /* 文字色（濃い青） */
+      font-size: 40px;    /* 文字サイズを大きく */
+      font-weight: 900;   /* 太字に */
+      margin: 0 0 16px;
+    }
+
+    p {
+      /* p = 段落テキストに適用するスタイル */
+      color: #555;      /* 文字色（グレー） */
+      line-height: 1.8; /* 行間（1.8倍に広げる） */
+    }
+
+    ul {
+      /* リストの余計な余白・記号を消す */
+      list-style: none;
+      margin: 0 0 20px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    li {
+      /* 各趣味項目をボタンのような見た目にする */
+      background-color: #eaf4fb; /* ボタンの背景色（薄い水色） */
+      color: #0d3b66;
+      border-radius: 12px;       /* 角丸 */
+      padding: 10px 16px;        /* 余白 */
+      transition: background-color 0.3s; /* 色の変化を0.3秒でなめらかに */
+    }
+
+    li:hover {
+      /* マウスを乗せたときに背景色を変える */
+      background-color: #0d3b66;
+      color: #fff;
+    }
+
+    h2 {
+      /* 「スキル」セクションの見出し */
+      color: #0d3b66;
+      font-size: 20px;
+      margin: 0 0 12px;
+    }
+
+    .skill {
+      margin-bottom: 14px;
+    }
+
+    .skill-label {
+      /* スキル名とパーセントの表示 */
+      color: #333;
+      font-size: 14px;
+      margin-bottom: 6px;
+    }
+
+    .skill-bar {
+      /* バーの背景（灰色のレール部分） */
+      background-color: #e6e6e6;
+      border-radius: 8px;
+      height: 12px;
+      overflow: hidden; /* バーがはみ出さないようにする */
+    }
+
+    .skill-bar-fill {
+      /* 実際に伸びるバー本体。グラデーションで色付け */
+      height: 100%;
+      width: 0;
+      border-radius: 8px;
+      background: linear-gradient(90deg, #0d3b66, #7ec8e3);
+      animation-duration: 1.2s;
+      animation-timing-function: ease-out;
+      animation-fill-mode: forwards; /* 伸びた後の幅を保つ */
+      animation-delay: 0.6s;         /* カードが現れた後にバーが伸びる */
+    }
+
+    .skill-html { animation-name: growHtml; }
+    .skill-js   { animation-name: growJs; }
+    .skill-ai   { animation-name: growAi; }
+
+    @keyframes growHtml {
+      from { width: 0; }
+      to   { width: 40%; }
+    }
+
+    @keyframes growJs {
+      from { width: 0; }
+      to   { width: 20%; }
+    }
+
+    @keyframes growAi {
+      from { width: 0; }
+      to   { width: 80%; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- body の中に「表示したい内容」を書く -->
+
+  <div class="card">
+    <!-- ↑ 白い角丸カード。この中に自己紹介の内容をまとめる -->
+
+    <h1>北村陽和</h1>
+    <!-- ↑ 大見出し。ページで最も目立つタイトルに使う -->
+
+    <p>こんにちは！プログラミングを学習中です。</p>
+    <!-- ↑ 段落テキスト。普通の文章は p タグで囲む -->
+
+    <ul>
+      <!-- ul = 箇条書きリスト。li で各項目を囲む -->
+      <li>趣味: 読書</li>
+      <li>趣味: 音楽</li>
+      <li>趣味: 旅行</li>
+      <li>趣味: スポーツ観戦</li>
+      <li>趣味: ドライブ</li>
+    </ul>
+    <a href="https://www.google.com">Googleを開く</a>
+
+    <h2>スキル</h2>
+    <!-- ↑ スキルセクションの見出し -->
+
+    <div class="skill">
+      <div class="skill-label">HTML/CSS: 40%</div>
+      <div class="skill-bar">
+        <div class="skill-bar-fill skill-html"></div>
+      </div>
+    </div>
+
+    <div class="skill">
+      <div class="skill-label">JavaScript: 20%</div>
+      <div class="skill-bar">
+        <div class="skill-bar-fill skill-js"></div>
+      </div>
+    </div>
+
+    <div class="skill">
+      <div class="skill-label">AI活用: 80%</div>
+      <div class="skill-bar">
+        <div class="skill-bar-fill skill-ai"></div>
+      </div>
+    </div>
+  </div>
+
+</body>
+<!-- ↑ HTMLの終わり -->
+</html>
